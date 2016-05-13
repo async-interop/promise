@@ -1,0 +1,14 @@
+{
+    "name": "async-interop/awaitable",
+    "description": "An awaitable interface for implementing async operations",
+    "keywords": ["awaitable", "async", "interop"],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Interop\\Async\\Awaitable\\": "src/"
+        }
+    }
+}
