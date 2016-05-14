@@ -1,4 +1,4 @@
-# Awaitable Interoperability
+# Whenable
 
 The purpose of this proposal is to provide a common interface for simple placeholder objects returned from async operations. This will allow libraries and components from different vendors to create coroutines regardless of the library. This proposal is not designed to replace promise implementations that may be chained. Instead, this interface may be extended by promise (future, delayed) implementations.
 
