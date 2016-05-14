@@ -8,9 +8,9 @@ namespace Interop\Async\Whenable;
 interface Whenable
 {
     /**
-     * Calling this method without a callback will throw the exception from a failed whenable in an uncatchable way.
+     * Registers a callback to be invoked when the whenable is resolved.
      *
-     * @param callable(\Throwable|\Exception $exception = null, mixed $result = null)|null $onResolved
+     * @param callable(\Throwable|\Exception $exception = null, mixed $result = null) $onResolved
      */
-    public function when(callable $onResolved = null);
+    public function when(callable $onResolved);
 }
