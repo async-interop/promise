@@ -18,10 +18,10 @@ This specification does not deal with how to create, succeed or fail `Awaitable`
 
 ## Terminology
 
-- 1. _Awaitable_ is an object implementing `Interop\Async\Awaitable` and conforming to this specification.
-- 1. _Value_ is any legal PHP value (including `null`), except an instance of `Interop\Async\Awaitable`.
-- 1. _Error_ is any value that can be thrown using the `throw` statement.
-- 1. _Reason_ is an error indicating why an `Awaitable` has failed.
+1. _Awaitable_ is an object implementing `Interop\Async\Awaitable` and conforming to this specification.
+1. _Value_ is any legal PHP value (including `null`), except an instance of `Interop\Async\Awaitable`.
+1. _Error_ is any value that can be thrown using the `throw` statement.
+1. _Reason_ is an error indicating why an `Awaitable` has failed.
 
 ## States
 
