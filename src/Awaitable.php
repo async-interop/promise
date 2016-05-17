@@ -3,14 +3,14 @@
 namespace Interop\Async;
 
 /**
- * Simple interface for awaitable objects representing the future value of asynchronous operations.
+ * Awaitable object representing the future value of an asynchronous operation.
  */
 interface Awaitable
 {
     /**
      * Registers a callback to be invoked when the awaitable is resolved.
      *
-     * @param callable(\Throwable|\Exception $exception = null, mixed $result = null) $onResolved
+     * @param callable(\Throwable|\Exception|null $exception, mixed $result) $onResolved
      *
      * @return void
      */
