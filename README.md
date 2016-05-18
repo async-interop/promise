@@ -1,6 +1,6 @@
 # Awaitable
 
-The purpose of this proposal is to provide a common interface for simple placeholder objects returned from async operations. This will allow libraries and components from different vendors to create coroutines regardless of used placeholder implementation. This proposal is not designed to replace promise implementations that may be chained. Instead, this interface may be extended by promise implementations.
+The purpose of this proposal is to provide a common interface for simple placeholder objects returned from async operations. This will allow libraries and components from different vendors to create coroutines regardless of the used placeholder implementation. This proposal is not designed to replace promise implementations that may be chained. Instead, this interface may be extended by promise implementations.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
@@ -68,7 +68,7 @@ The `when` method MUST accept at least one argument:
 function($error, $value) { /* ... */ }
 ```
 
-Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Awaitable` interface with additional parameters passed to the callback. Further arguments to `when` MUST have default values, so `when` can always be called with only one argument. Callbacks MAY decide to consume only one or none of the provided parameters. `when` MUST NOT return a value.
+Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Awaitable` interface with additional parameters passed to the callback. Further arguments to `when` MUST have default values, so `when` can always be called with only one argument. `when` MUST NOT return a value.
 
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
