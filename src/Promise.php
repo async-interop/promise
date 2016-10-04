@@ -3,12 +3,12 @@
 namespace Interop\Async;
 
 /**
- * Awaitable object representing the future value of an asynchronous operation.
+ * Promise object representing the future value of an asynchronous operation.
  */
-interface Awaitable
+interface Promise
 {
     /**
-     * Registers a callback to be invoked when the awaitable is resolved.
+     * Registers a callback to be invoked when the promise is resolved.
      *
      * @param callable(\Throwable|\Exception|null $exception, mixed $result) $onResolved
      *
