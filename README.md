@@ -72,7 +72,7 @@ Any implementation MUST at least provide these two parameters. The implementatio
 
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
-All registered callbacks MUST be executed in the order they were registered. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be rethrown in a callable passed to `Loop::defer` so `Loop::onError` can be properly invoked by the loop. `Loop` refers to the [global event loop accessor](https://github.com/async-interop/event-loop/blob/master/src/Loop.php). The `Awaitable` implementation MUST then continue to call the remaining callbacks with the original parameters.
+All registered callbacks MUST be executed in the order they were registered. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be rethrown in a callable passed to `Loop::defer` so `Loop::onError` can be properly invoked by the loop. If there is no active loop, and one of the callbacks throws an `Exception` or `Throwable`, behavior is undefined. `Loop` refers to the [global event loop accessor](https://github.com/async-interop/event-loop/blob/master/src/Loop.php). The `Awaitable` implementation MUST then continue to call the remaining callbacks with the original parameters. 
 
 If an `Awaitable` is resolved with another `Awaitable`, the `Awaitable` MUST keep in pending state until the passed `Awaitable` is resolved. Thus, the value of an `Awaitable` can never be an `Awaitable`.
 
