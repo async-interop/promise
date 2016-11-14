@@ -1,7 +1,7 @@
 {
-    "name": "async-interop/awaitable",
-    "description": "An awaitable interface for implementing async operations",
-    "keywords": ["awaitable", "async", "interop"],
+    "name": "async-interop/promise",
+    "description": "Promise interface for implementing async operations",
+    "keywords": ["promise", "future", "awaitable", "async", "interop"],
     "license": "MIT",
     "require": {
         "php": ">=5.4"
