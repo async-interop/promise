@@ -1,6 +1,8 @@
 <?php
 
-namespace Async\Interop;
+namespace Interop\Async\Promise;
+
+use Interop\Async\Promise;
 
 /**
  * Global error handler for promises.
@@ -9,7 +11,7 @@ namespace Async\Interop;
  * global error handler to make them easily loggable. These can't be handled gracefully in any way, so we just enable
  * logging with this handler and ignore them otherwise.
  */
-final class PromiseErrorHandler
+final class ErrorHandler
 {
     /** @var callable[] */
     private static $callbacks = [];
@@ -80,8 +82,7 @@ final class PromiseErrorHandler
             // We have this error handler specifically so we never throw from Promise::when, so it doesn't make sense to
             // throw here. We just forward a generic exception to the registered handlers.
             $error = new \Exception(sprintf(
-                "Promise implementation called %s::%s with an invalid argument of type '%s'",
-                __CLASS__,
+                "Promise implementation called %s with an invalid argument of type '%s'",
                 __METHOD__,
                 is_object($error) ? get_class($error) : gettype($error)
             ));
@@ -114,7 +115,7 @@ final class PromiseErrorHandler
                 . " install an empty handler that just does nothing. If the handler is called, there is ALWAYS"
                 . " something wrong.\n\n%s",
                 Promise::class,
-                PromiseErrorHandler::class,
+                ErrorHandler::class,
                 (string) $error
             ), E_USER_ERROR);
         }
