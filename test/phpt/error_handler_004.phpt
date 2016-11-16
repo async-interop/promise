@@ -13,5 +13,5 @@ Fatal error: An exception has been thrown from an Interop\Async\Promise::when ha
 
 %sPromise implementation called Interop\Async\Promise\ErrorHandler::notify with an invalid argument of type 'integer'%sin %s:%d
 Stack trace:
-#0 %s(%d): Interop\Async\Promise\ErrorHandler::notify(42)
+#0 %s(%d): Interop\Async\Promise\ErrorHandler::notify(%s
 #1 {main} in %s on line %d
