@@ -22,5 +22,5 @@ install:
   - composer show -t
 
 script:
-  - find -name "*.php" -not -path "./vendor/*" -print0 | xargs -n 1 -0 php -l
+  - php vendor/bin/parallel-lint --exclude vendor .
   - php vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml
