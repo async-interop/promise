@@ -30,7 +30,7 @@ final class PromiseErrorHandler
      *
      * @return int Returns an integer identifier which allows to remove the handler again.
      */
-    public static function addHandler(callable $onError)
+    public static function add(callable $onError)
     {
         self::$callbacks[] = $onError;
         end(self::$callbacks);
@@ -42,7 +42,7 @@ final class PromiseErrorHandler
      *
      * @return bool Returns `true` if the handler existed, `false` otherwise.
      */
-    public static function removeHandler($id)
+    public static function remove($id)
     {
         if (!is_int($id)) {
             throw new \InvalidArgumentException(sprintf(
@@ -54,6 +54,17 @@ final class PromiseErrorHandler
         $exists = array_key_exists($id, self::$callbacks);
         unset(self::$callbacks[$id]);
         return $exists;
+    }
+
+    /**
+     * Removes all handlers.
+     *
+     * This method should usually not be used, but it may be helpful in unit tests to start from a clean state if
+     * certain handlers do not clean up after themselves.
+     */
+    public static function reset()
+    {
+        self::$callbacks = [];
     }
 
     /**
@@ -69,7 +80,7 @@ final class PromiseErrorHandler
             // We have this error handler specifically so we never throw from Promise::when, so it doesn't make sense to
             // throw here. We just forward a generic exception to the registered handlers.
             $error = new \Exception(sprintf(
-                "Promise implementation called %s::%s with an invalid argument type: %s",
+                "Promise implementation called %s::%s with an invalid argument of type '%s'",
                 __CLASS__,
                 __METHOD__,
                 is_object($error) ? get_class($error) : gettype($error)
@@ -80,10 +91,32 @@ final class PromiseErrorHandler
             try {
                 $callback($error);
             } catch (\Exception $e) {
-                // ignore, we're already a last chance handler
+                // We're already a last chance handler, throwing doesn't make sense, so use a real fatal
+                trigger_error(sprintf(
+                    "An exception has been thrown in a handler registered to %s:\n%s",
+                    __CLASS__,
+                    (string) $e
+                ), E_USER_ERROR);
             } catch (\Throwable $e) {
-                // ignore, we're already a last chance handler
+                // We're already a last chance handler, throwing doesn't make sense, so use a real fatal
+                trigger_error(sprintf(
+                    "An exception has been thrown in a handler registered to %s:\n%s",
+                    __CLASS__,
+                    (string) $e
+                ), E_USER_ERROR);
             }
+        }
+
+        if (empty(self::$callbacks)) {
+            trigger_error(sprintf(
+                "An exception has been thrown from an %s::when handler, but no handler has been registered via %s::add."
+                . " At least one handler has to be registered to prevent exceptions from going unnoticed. Do NOT"
+                . " install an empty handler that just does nothing. If the handler is called, there is ALWAYS"
+                . " something wrong.\n\n%s",
+                Promise::class,
+                PromiseErrorHandler::class,
+                (string) $error
+            ), E_USER_ERROR);
         }
     }
 }
