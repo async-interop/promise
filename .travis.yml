@@ -19,7 +19,7 @@ cache:
 
 install:
   - composer install
-  - composer show
+  - composer show -t
 
 script:
   - find -name "*.php" -not -path "./vendor/*" -print0 | xargs -n 1 -0 php -l
