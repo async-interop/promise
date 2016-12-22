@@ -23,3 +23,9 @@ Even though we are not using a thenable, `Promise` is a more recognizable and ac
 ## Creation of Promises
 
 Promise creation and managing is out of scope of this specification, as managing never shall cross library boundaries and thus does not need to be interoperable at all; each library shall resolve the Promise it created itself.
+
+## Results must not be a Promise
+
+The specification recommends whenever the result of a `Promise` is being set to another `Promise`, it should be set to the value the other `Promise` has been or will be resolved with.
+
+Thus `Promise` is not a supported result value either.
