@@ -11,7 +11,7 @@ use Interop\Async\Promise;
  * global error handler to make them easily loggable. These can't be handled gracefully in any way, so we just enable
  * logging with this handler and ignore them otherwise.
  *
- * If handler is set or that handler rethrows, it will fail hard by triggering an E_USER_ERROR leading to script
+ * If no handler is set or that handler rethrows, it will fail hard by triggering an E_USER_ERROR leading to script
  * abortion.
  */
 final class ErrorHandler
