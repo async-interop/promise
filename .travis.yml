@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+  - 7.0
+  - nightly
+  - hhvm
+
+matrix:
+  allow_failures:
+   - php: nightly
+  fast_finish: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+install:
+  - composer install
+  - composer show -t
+
+script:
+  - php vendor/bin/parallel-lint --exclude vendor .
+  - php vendor/bin/phpunit --coverage-text
