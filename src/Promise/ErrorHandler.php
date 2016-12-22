@@ -75,8 +75,7 @@ final class ErrorHandler
         }
 
         try {
-            $callback = self::$callback;
-            $callback($error);
+            \call_user_func(self::$callback, $error);
         } catch (\Exception $e) {
             // We're already a last chance handler, throwing doesn't make sense, so use a real fatal
             trigger_error(sprintf(
