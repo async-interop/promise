@@ -36,11 +36,13 @@ final class ErrorHandler
      *
      * @param callable|null $onError Callback to invoke on errors or `null` to reset.
      *
-     * @return void
+     * @return callable|null Previous callback.
      */
     public static function set(callable $onError = null)
     {
+        $previous = self::$callback;
         self::$callback = $onError;
+        return $previous;
     }
 
     /**
