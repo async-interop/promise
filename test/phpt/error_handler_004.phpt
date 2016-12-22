@@ -9,7 +9,7 @@ Interop\Async\Promise\ErrorHandler::notify(42);
 
 ?>
 --EXPECTF--
-Fatal error: An exception has been thrown from an Interop\Async\Promise::when handler, but no handler has been registered via Interop\Async\Promise\ErrorHandler::add. At least one handler has to be registered to prevent exceptions from going unnoticed. Do NOT install an empty handler that just does nothing. If the handler is called, there is ALWAYS something wrong.
+Fatal error: An exception has been thrown from an Interop\Async\Promise::when handler, but no handler has been registered via Interop\Async\Promise\ErrorHandler::set. A handler has to be registered to prevent exceptions from going unnoticed. Do NOT install an empty handler that just does nothing. If the handler is called, there is ALWAYS something wrong.
 
 %SException%SPromise implementation called Interop\Async\Promise\ErrorHandler::notify with an invalid argument of type 'integer'%S in %s:%d
 Stack trace:
