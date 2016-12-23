@@ -74,7 +74,7 @@ Any implementation MUST at least provide these two parameters. The implementatio
 
 All registered callbacks MUST be executed in the order they were registered. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `Async\Interop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 
-If a `Promise` is resolved with another `Promise`, the `Promise` MUST keep in pending state until the passed `Promise` is resolved. Thus, the value of a `Promise` can never be a `Promise`.
+A result MUST NOT be an instance of `Promise`.
 
 ## Contributors
 
