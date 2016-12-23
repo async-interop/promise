@@ -18,7 +18,7 @@ Additionally, coroutines do not use the returned `Promise` of a `then` callback,
 
 ## Naming
 
-Even though we are not using a thenable, `Promise` is a more recognizable and accepted name for future value placeholders.
+`Promise` is a recognized and accepted name for future value placeholders, it's not strictly tied to the `Thenable` API.
 
 ## Creation of Promises
 
