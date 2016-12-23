@@ -19,7 +19,7 @@ For further design explanations and notes, please refer to [the meta document](M
 ## Terminology
 
 1. _Promise_ is an object implementing `Interop\Async\Promise` and conforming to this specification.
-2. _Value_ is any legal PHP value (including `null`), except an instance of `Interop\Async\Promise`.
+2. _Value_ is any legal PHP value (including `null`), but not an instance of `Interop\Async\Promise`.
 3. _Error_ is any value that can be thrown using the `throw` statement.
 4. _Reason_ is an error indicating why a `Promise` has failed.
 
@@ -73,8 +73,6 @@ Any implementation MUST at least provide these two parameters. The implementatio
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
 All registered callbacks MUST be executed in the order they were registered. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `Async\Interop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
-
-If a `Promise` is resolved with another `Promise`, the `Promise` MUST keep in pending state until the passed `Promise` is resolved. Thus, the value of a `Promise` can never be a `Promise`.
 
 ## Contributors
 

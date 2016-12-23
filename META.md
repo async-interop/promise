@@ -22,4 +22,8 @@ Additionally, coroutines do not use the returned `Promise` of a `then` callback,
 
 ## Creation of Promises
 
-Promise creation and managing is out of scope of this specification, as managing never shall cross library boundaries and thus does not need to be interoperable at all; each library shall resolve the Promise it created itself.
+`Promise` creation and managing is out of scope of this specification, as managing never shall cross library boundaries and thus does not need to be interoperable at all. Each library shall resolve the `Promise` it created itself.
+
+## Resolution of Promises
+
+The specification defines that the value of a `Promise` must never be another `Promise`. Implementations may still accept to be resolved by a promise and then defer the resolution until the passed promise resolves.
