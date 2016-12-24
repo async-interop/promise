@@ -74,7 +74,7 @@ Any implementation MUST at least provide these two parameters. The implementatio
 
 All registered callbacks MUST be executed in the order they were registered. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `Async\Interop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 
-Promise implementations MUST NOT use strict types (`declare(strict_types=1)`).
+Registered callbacks MUST NOT be called from a file with strict types enabled (`declare(strict_types=1)`).
 
 ## Contributors
 
