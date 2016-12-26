@@ -3,7 +3,7 @@
 namespace Interop\Async;
 
 /**
- * Representation of a the future value of an asynchronous operation.
+ * Representation of the future value of an asynchronous operation.
  */
 interface Promise
 {
