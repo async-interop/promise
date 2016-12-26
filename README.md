@@ -45,11 +45,11 @@ A `Promise` MUST implement `Interop\Async\Promise` and thus provide a `when` met
 namespace Interop\Async;
 
 /**
- * Representation of a the future value of an asynchronous operation.
+ * Representation of the future value of an asynchronous operation.
  */
 interface Promise
 {
-	/**
+    /**
      * Registers a callback to be invoked when the promise is resolved.
      *
      * The callback receives `null` as first parameter and `$value` as second parameter on success. It receives the
