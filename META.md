@@ -14,7 +14,7 @@ The specification proposes `when()` in order to only expose the most primitive c
 
 If implementations wish to adhere to e.g. [Promises/A+ from Javascript](https://promisesaplus.com) (which had been implemented in many PHP Promise libraries at the time of writing this specification) or implement any other methods, they still may do so; `when()` however is the fundamental interoperable primitive every `Promise` is guaranteed to have.
 
-Additionally, coroutines do not use the returned `Promise` of a `then` callback, but returning a `Promise` is required by Promises/A+. Thus there's a lot of useless object creations when using Promises the recommended way, which isn't cheap and adds up. This conflicts with the goal of being as lightweight as possible.
+Additionally, coroutines do not use the returned `Promise` of a `then()` callback, but returning a `Promise` is required by Promises/A+. Thus there's a lot of useless object creations when using Promises the recommended way, which isn't cheap and adds up. This conflicts with the goal of being as lightweight as possible.
 
 ## Naming
 

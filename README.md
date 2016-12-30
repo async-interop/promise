@@ -6,7 +6,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC 2119][].
 
-A `Promise` represents the eventual result of an asynchronous operation. Interaction with a `Promise` happens through its `when` method, which registers a callback to receive either a `Promise`'s eventual value or the reason why the `Promise` has failed.
+A `Promise` represents the eventual result of an asynchronous operation. Interaction with a `Promise` happens through its `when()` method, which registers a callback to receive either a `Promise`'s eventual value or the reason why the `Promise` has failed.
 
 `Promise` is the fundamental primitive in asynchronous programming. It should be as lightweight as possible, as any cost adds up significantly.
 
@@ -37,7 +37,7 @@ A `Promise` MUST be in one of three states: `pending`, `succeeded`, `failed`.
 
 ## Consumption
 
-A `Promise` MUST implement `Interop\Async\Promise` and thus provide a `when` method to access its current or eventual value or reason.
+A `Promise` MUST implement `Interop\Async\Promise` and thus provide a `when()` method to access its current or eventual value or reason.
 
 ```php
 <?php
@@ -67,7 +67,7 @@ interface Promise
 }
 ```
 
-The `when` method MUST accept at least one argument:
+The `when()` method MUST accept at least one argument:
 
 `$callback` – A callable conforming to the following signature:
 
@@ -75,7 +75,7 @@ The `when` method MUST accept at least one argument:
 function($error, $value) { /* ... */ }
 ```
 
-Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Promise` interface with additional parameters passed to the callback. Further arguments to `when` MUST have default values, so `when` can always be called with only one argument. `when` MAY NOT return a value. `when` MUST NOT throw exceptions bubbling up from a callback invocation.
+Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Promise` interface with additional parameters passed to the callback. Further arguments to `when()` MUST have default values, so `when()` can always be called with only one argument. `when()` MAY NOT return a value. `when()` MUST NOT throw exceptions bubbling up from a callback invocation.
 
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
