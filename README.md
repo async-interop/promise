@@ -1,6 +1,6 @@
 # Promise
 
-The purpose of this proposal is to provide a common interface for simple placeholder objects returned from async operations. This will allow libraries and components from different vendors to create coroutines regardless of the used placeholder implementation. This proposal is not designed to replace promise implementations that may be chained. Instead, this interface may be extended by promise implementations.
+The purpose of this specification is to provide a common interface for simple placeholder objects returned from async operations. This allows libraries and components from different vendors to create coroutines regardless of the used placeholder implementation. This specification is not designed to replace promise implementations that may be chained. Instead, this interface may be extended by promise implementations.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
