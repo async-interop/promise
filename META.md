@@ -10,7 +10,7 @@ Coroutines solve the problem of the so-called callback hell very nicely and also
 
 ## Choice of `when()`
 
-The specification proposes `when()` in order to only expose the most primitive common denominatior needed for interoperability, which is a simple callable to be executed after the resolution.
+The specification proposes `when()` in order to only expose the most primitive common denominator needed for interoperability, which is a simple callable to be executed after the resolution.
 
 If implementations wish to adhere to e.g. [Promises/A+ from Javascript](https://promisesaplus.com) (which had been implemented in many PHP Promise libraries at the time of writing this specification) or implement any other methods, they still may do so; `when()` however is the fundamental interoperable primitive every `Promise` is guaranteed to have.
 
