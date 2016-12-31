@@ -35,6 +35,8 @@ A `Promise` MUST be in one of three states: `pending`, `succeeded`, `failed`.
 
 * _Must not change_ refers to the _reference_ being immutable in case of an object, _not the object itself_ being immutable.
 
+A `Promise` is resolved once it either succeeded or failed.
+
 ## Consumption
 
 A `Promise` MUST implement `Interop\Async\Promise` and thus provide a `when()` method to access its current or eventual value or reason.
