@@ -13,12 +13,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Interop\\Async\\": "src"
+            "AsyncInterop\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Interop\\Async\\Promise\\Test\\": "test"
+            "AsyncInterop\\Promise\\Test\\": "test"
         }
     }
 }

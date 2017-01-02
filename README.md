@@ -18,8 +18,8 @@ For further design explanations and notes, please refer to [the meta document](M
 
 ## Terminology
 
-1. _Promise_ is an object implementing `Interop\Async\Promise` and conforming to this specification.
-2. _Value_ is any legal PHP value (including `null`), but not an instance of `Interop\Async\Promise`.
+1. _Promise_ is an object implementing `AsyncInterop\Promise` and conforming to this specification.
+2. _Value_ is any legal PHP value (including `null`), but not an instance of `AsyncInterop\Promise`.
 3. _Error_ is any value that can be thrown using the `throw` statement.
 4. _Reason_ is an error indicating why a `Promise` has failed.
 
@@ -39,12 +39,12 @@ A `Promise` is resolved once it either succeeded or failed.
 
 ## Consumption
 
-A `Promise` MUST implement `Interop\Async\Promise` and thus provide a `when()` method to access its current or eventual value or reason.
+A `Promise` MUST implement `AsyncInterop\Promise` and thus provide a `when()` method to access its current or eventual value or reason.
 
 ```php
 <?php
 
-namespace Interop\Async;
+namespace AsyncInterop;
 
 /**
  * Representation of the future value of an asynchronous operation.
@@ -81,7 +81,7 @@ Any implementation MUST at least provide these two parameters. The implementatio
 
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
-All callbacks registered before the resolution MUST be executed in the order they were registered. Callbacks registered after the resolution MUST be executed immediately. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `Async\Interop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
+All callbacks registered before the resolution MUST be executed in the order they were registered. Callbacks registered after the resolution MUST be executed immediately. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `AsyncInterop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 
 Registered callbacks MUST NOT be called from a file with strict types enabled (`declare(strict_types=1)`).
 

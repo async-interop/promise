@@ -5,8 +5,8 @@ ErrorHandler::notify() does not fatal with a handler
 
 require __DIR__ . "/../../vendor/autoload.php";
 
-Interop\Async\Promise\ErrorHandler::set(function () { print "1"; });
-Interop\Async\Promise\ErrorHandler::notify(new Exception);
+AsyncInterop\Promise\ErrorHandler::set(function () { print "1"; });
+AsyncInterop\Promise\ErrorHandler::notify(new Exception);
 
 ?>
 --EXPECT--
