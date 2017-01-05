@@ -77,7 +77,7 @@ The `when()` method MUST accept at least one argument:
 function($error, $value) { /* ... */ }
 ```
 
-Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Promise` interface with additional parameters passed to the callback. Further arguments to `when()` MUST have default values, so `when()` can always be called with only one argument. `when()` MAY NOT return a value. `when()` MUST NOT throw exceptions bubbling up from a callback invocation.
+Any implementation MUST at least provide these two parameters. The implementation MAY extend the `Promise` interface with additional parameters passed to the callback. Further arguments to `when()` MUST have default values, so `when()` can always be called with only one argument. `when()` MAY return a value. `when()` MUST NOT throw exceptions bubbling up from a callback invocation.
 
 > **NOTE:** The signature doesn't specify a type for `$error`. This is due to the new `Throwable` interface introduced in PHP 7. As this specification is PHP 5 compatible, we can use neither `Throwable` nor `Exception`.
 
