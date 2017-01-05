@@ -67,8 +67,6 @@ interface Promise
 
 The implementation MAY extend `Promise::when` with additional parameters passed to the callback. Further arguments to `Promise::when()` MUST have default values, so `Promise::when()` can always be called with only one argument. `Promise::when()` MAY NOT return a value. `Promise::when()` MUST NOT throw exceptions bubbling up from a callback invocation.
 
-All callbacks registered before the resolution MUST be executed in the order they were registered. Callbacks registered after the resolution MUST be executed immediately. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `Interop\Async\Promise\ErrorHandler::notify`. The `Promise` MUST then continue to call the remaining callbacks with the original parameters.
-
 All callbacks registered before the resolution MUST be executed in the order they were registered. Callbacks registered after the resolution MUST be executed immediately. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `AsyncInterop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 Registered callbacks MUST NOT be called from a file with strict types enabled (`declare(strict_types=1)`).
 
