@@ -56,20 +56,18 @@ interface Promise
      *
      * If the promise is already resolved, the callback MUST be executed immediately.
      *
-     * @param callable(mixed $reason, mixed $value) @onResolved `$reason` shall be `null` on success, `$value` shall be
-     *     `null` on failure.
+     * @param callable(\Throwable|\Exception|null $exception, mixed $value) @onResolved `$reason` shall be `null` on
+     *     success, `$value` shall be `null` on failure.
      *
-     * @return void
+     * @return mixed Return type and value are unspecified.
      */
     public function when(callable $onResolved);
 }
 ```
 
-The implementation MAY extend `Promise::when()` with additional parameters passed to the callback. Further arguments to `Promise::when()` MUST have default values, so `Promise::when()` can always be called with only one argument. `Promise::when()` MAY NOT return a value. `Promise::when()` MUST NOT throw exceptions bubbling up from a callback invocation.
-
 All callbacks registered before the `Promise` is resolved MUST be executed in the order they were registered after the `Promise` has been resolved. Callbacks registered after the resolution MUST be executed immediately.
 
-If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `AsyncInterop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
+The invocation of `Promise::when()` MUST NOT throw exceptions bubbling up from a `$onResolved` invocation. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `AsyncInterop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 
 Registered callbacks MUST NOT be called from a file with strict types enabled (`declare(strict_types=1)`).
 

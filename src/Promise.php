@@ -12,10 +12,10 @@ interface Promise
      *
      * If the promise is already resolved, the callback MUST be executed immediately.
      *
-     * @param callable(mixed $reason, mixed $value) @onResolved `$reason` shall be `null` on success, `$value` shall be
-     *     `null` on failure.
+     * @param callable(\Throwable|\Exception|null $exception, mixed $value) @onResolved `$reason` shall be `null` on
+     *     success, `$value` shall be `null` on failure.
      *
-     * @return void
+     * @return mixed Return type and value are unspecified.
      */
     public function when(callable $onResolved);
 }
