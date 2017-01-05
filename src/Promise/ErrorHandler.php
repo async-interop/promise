@@ -1,8 +1,8 @@
 <?php
 
-namespace Interop\Async\Promise;
+namespace AsyncInterop\Promise;
 
-use Interop\Async\Promise;
+use AsyncInterop\Promise;
 
 /**
  * Global error handler for promises.
@@ -66,8 +66,8 @@ final class ErrorHandler
 
         if (self::$callback === null) {
             trigger_error(
-                "An exception has been thrown from an Interop\\Async\\Promise::when handler, but no handler has been"
-                . " registered via Interop\\Async\\Promise\\ErrorHandler::set. A handler has to be registered to"
+                "An exception has been thrown from an AsyncInterop\\Promise::when handler, but no handler has been"
+                . " registered via AsyncInterop\\Promise\\ErrorHandler::set. A handler has to be registered to"
                 . " prevent exceptions from going unnoticed. Do NOT install an empty handler that just"
                 . " does nothing. If the handler is called, there is ALWAYS something wrong.\n\n" . (string) $error,
                 E_USER_ERROR

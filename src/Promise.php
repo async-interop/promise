@@ -1,6 +1,6 @@
 <?php
 
-namespace Interop\Async;
+namespace AsyncInterop;
 
 /**
  * Representation of the future value of an asynchronous operation.

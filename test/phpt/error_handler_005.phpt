@@ -5,10 +5,10 @@ ErrorHandler::set() replaces the current handler
 
 require __DIR__ . "/../../vendor/autoload.php";
 
-Interop\Async\Promise\ErrorHandler::set(function () { print "1"; });
-Interop\Async\Promise\ErrorHandler::set(function () { print "2"; });
-Interop\Async\Promise\ErrorHandler::set(function () { print "3"; });
-Interop\Async\Promise\ErrorHandler::notify(new Exception);
+AsyncInterop\Promise\ErrorHandler::set(function () { print "1"; });
+AsyncInterop\Promise\ErrorHandler::set(function () { print "2"; });
+AsyncInterop\Promise\ErrorHandler::set(function () { print "3"; });
+AsyncInterop\Promise\ErrorHandler::notify(new Exception);
 
 ?>
 --EXPECT--

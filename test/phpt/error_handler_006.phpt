@@ -5,12 +5,12 @@ ErrorHandler::notify() fatals if handler throws
 
 require __DIR__ . "/../../vendor/autoload.php";
 
-Interop\Async\Promise\ErrorHandler::set(function ($e) { throw $e; });
-Interop\Async\Promise\ErrorHandler::notify(new Exception);
+AsyncInterop\Promise\ErrorHandler::set(function ($e) { throw $e; });
+AsyncInterop\Promise\ErrorHandler::notify(new Exception);
 
 ?>
 --EXPECTF--
-Fatal error: An exception has been thrown from the promise error handler registered to Interop\Async\Promise\ErrorHandler::set().
+Fatal error: An exception has been thrown from the promise error handler registered to AsyncInterop\Promise\ErrorHandler::set().
 
 %s in %s:%d
 Stack trace:
