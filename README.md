@@ -65,7 +65,7 @@ interface Promise
 }
 ```
 
-The implementation MAY extend `Promise::when` with additional parameters passed to the callback. Further arguments to `Promise::when()` MUST have default values, so `Promise::when()` can always be called with only one argument. `Promise::when()` MAY NOT return a value. `Promise::when()` MUST NOT throw exceptions bubbling up from a callback invocation.
+The implementation MAY extend `Promise::when()` with additional parameters passed to the callback. Further arguments to `Promise::when()` MUST have default values, so `Promise::when()` can always be called with only one argument. `Promise::when()` MAY NOT return a value. `Promise::when()` MUST NOT throw exceptions bubbling up from a callback invocation.
 
 All callbacks registered before the `Promise` is resolved MUST be executed in the order they were registered after the `Promise` has been resolved. Callbacks registered after the resolution MUST be executed immediately.
 
