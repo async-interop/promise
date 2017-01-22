@@ -67,9 +67,13 @@ interface Promise
 
 All callbacks registered before the `Promise` is resolved MUST be executed in the order they were registered after the `Promise` has been resolved. Callbacks registered after the resolution MUST be executed immediately.
 
-The invocation of `Promise::when()` MUST NOT throw exceptions bubbling up from a `$onResolved` invocation. If one of the callbacks throws an `Exception` or `Throwable`, it MUST be forwarded to `AsyncInterop\Promise\ErrorHandler::notify`. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
+The invocation of `Promise::when()` MUST NOT throw exceptions bubbling up from an `$onResolved` invocation. If one of the callbacks throws an `Exception` or `Throwable`, the `Promise` implementation MUST catch it and call `AsyncInterop\Promise\ErrorHandler::notify()` with the `Exception` or `Throwable` as first argument. The `Promise` implementation MUST then continue to call the remaining callbacks with the original parameters.
 
 Registered callbacks MUST NOT be called from a file with strict types enabled (`declare(strict_types=1)`).
+
+## Error Handling
+
+Uncaught exceptions thrown from callbacks registered to `Promise::when()` are forwarded to the `ErrorHandler` by `Promise` implementations. `ErrorHandler::set()` can be used to register a callable to handle these exceptions gracefully, e.g. by logging them. In case the handler throws again or is not set, an `E_USER_ERROR` is triggered. If a PHP error handler is set using `set_error_handler` and it throws, a short message is written to STDERR and the program exits with code `255`. Thus, it's RECOMMENDED to set an error handler and ensure it doesn't throw, especially if the PHP error handler is set up to convert errors to exceptions.
 
 ## Contributors
 
