@@ -55,9 +55,9 @@ final class ErrorHandler
     {
         // No type declaration, because of PHP 5 + PHP 7 support.
         if (!$error instanceof \Exception && !$error instanceof \Throwable) {
-            // We have this error handler specifically so we never throw from Promise::when, so it doesn't make sense to
-            // throw here. We just forward a generic exception to the registered handlers.
-            $error = new \Exception(sprintf(
+            // We have this error handler specifically so we never throw from Promise::when(), so it doesn't make sense
+            // to throw here. We just forward a generic exception to the registered handlers.
+            $error = new \Exception(\sprintf(
                 "Promise implementation called %s() with an invalid argument of type '%s'",
                 __METHOD__,
                 \is_object($error) ? \get_class($error) : \gettype($error)
@@ -123,7 +123,7 @@ final class ErrorHandler
             // fputs might fail due to a closed pipe
             // no STDERR, because it doesn't exist on piped STDIN
             // no finally, because PHP 5.4
-            \fputs(fopen("php://stderr", "w"), \sprintf(
+            \fputs(\fopen("php://stderr", "w"), \sprintf(
                 "Fatal error: Uncaught exception '%s' while trying to report a throwing AsyncInterop\\Promise::when()"
                 . " handler gracefully." . \PHP_EOL,
                 \get_class($error)
