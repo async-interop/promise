@@ -3,6 +3,10 @@ ErrorHandler::notify() fatals with a throwing error handler
 --SKIPIF--
 <?php
 
+// Warning: This relies on the current working directory in which PHPUnit is executed.
+// If the directory is not the root of the project, this will silently fail and execute the test below.
+require __DIR__ . "/vendor/autoload.php";
+
 $series = PHPUnit_Runner_Version::series();
 list($major, $minor) = explode(".", $series);
 
