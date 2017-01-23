@@ -113,7 +113,7 @@ final class ErrorHandler
         // The set error handler did throw or not exist, PHP's error handler threw, no chance to handle the error
         // gracefully at this time. PANIC!
 
-        // Print error information to STDERR to the reason for the program abortion can be found, but do not expose
+        // Print error information to STDERR so the reason for the program abortion can be found, but do not expose
         // exception message and trace, as they might contain sensitive information and we do not know whether STDERR
         // might be available to an untrusted user.
 
