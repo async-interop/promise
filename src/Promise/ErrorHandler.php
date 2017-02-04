@@ -112,28 +112,14 @@ final class ErrorHandler
     private static function panic($error) {
         // The set error handler did throw or not exist, PHP's error handler threw, no chance to handle the error
         // gracefully at this time. PANIC!
-
-        // Print error information to STDERR so the reason for the program abortion can be found, but do not expose
-        // exception message and trace, as they might contain sensitive information and we do not know whether STDERR
-        // might be available to an untrusted user.
-
         // Exit with the same code as if PHP exits because of an uncaught exception.
+        $message = "'%s' thrown while trying to report a throwing AsyncInterop\\Promise::when() handler gracefully.";
+        $exception = new \Exception(\sprintf($message, \get_class($error)), 0, $error);
 
-        try {
-            // fputs might fail due to a closed pipe
-            // no STDERR, because it doesn't exist on piped STDIN
-            // no finally, because PHP 5.4
-            \fputs(\fopen("php://stderr", "w"), \sprintf(
-                "Fatal error: Uncaught exception '%s' while trying to report a throwing AsyncInterop\\Promise::when()"
-                . " handler gracefully." . \PHP_EOL,
-                \get_class($error)
-            ));
+        \register_shutdown_function(function () use ($exception) {
+            throw $exception;
+        });
 
-            exit(255);
-        } catch (\Exception $e) {
-            exit(255);
-        } catch (\Throwable $e) {
-            exit(255);
-        }
+        exit(255);
     }
 }

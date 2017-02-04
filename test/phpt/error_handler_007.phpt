@@ -30,5 +30,17 @@ set_error_handler(function () {
 AsyncInterop\Promise\ErrorHandler::notify(new Exception);
 
 ?>
---EXPECT--
-Fatal error: Uncaught exception 'RuntimeException' while trying to report a throwing AsyncInterop\Promise::when() handler gracefully.
+--EXPECTF--
+%SRuntimeException%S
+Stack trace:
+#0 %s
+#1 %s
+#2 %s
+#3 %s
+#4 %s
+
+Next %sxception%s
+Stack trace:
+#0 %s
+#1 %s
+#2 %s
