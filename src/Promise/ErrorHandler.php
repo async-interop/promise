@@ -2,8 +2,6 @@
 
 namespace AsyncInterop\Promise;
 
-use AsyncInterop\Promise;
-
 /**
  * Global error handler for promises.
  *
@@ -50,6 +48,8 @@ final class ErrorHandler
      *
      * This method MUST be called by every promise implementation if a callback passed to `Promise::when()` throws upon
      * invocation. It MUST NOT be called otherwise.
+     *
+     * @param \Exception|\Throwable $error Exception that occurred.
      */
     public static function notify($error)
     {
@@ -97,43 +97,16 @@ final class ErrorHandler
         // We're already a last chance handler, throwing doesn't make sense, so use E_USER_ERROR.
         // E_USER_ERROR is recoverable by a handler set via set_error_handler, which might throw, too.
 
-        try {
-            \trigger_error(
-                $message . "\n\n" . (string) $error,
-                E_USER_ERROR
-            );
-        } catch (\Exception $e) {
-            self::panic($e);
-        } catch (\Throwable $e) {
-            self::panic($e);
-        }
-    }
-
-    private static function panic($error) {
-        // The set error handler did throw or not exist, PHP's error handler threw, no chance to handle the error
-        // gracefully at this time. PANIC!
-
-        // Print error information to STDERR so the reason for the program abortion can be found, but do not expose
-        // exception message and trace, as they might contain sensitive information and we do not know whether STDERR
-        // might be available to an untrusted user.
-
-        // Exit with the same code as if PHP exits because of an uncaught exception.
+        $message .= "\n\n" . (string) $error;
 
         try {
-            // fputs might fail due to a closed pipe
-            // no STDERR, because it doesn't exist on piped STDIN
-            // no finally, because PHP 5.4
-            \fputs(\fopen("php://stderr", "w"), \sprintf(
-                "Fatal error: Uncaught exception '%s' while trying to report a throwing AsyncInterop\\Promise::when()"
-                . " handler gracefully." . \PHP_EOL,
-                \get_class($error)
-            ));
-
-            exit(255);
+            \trigger_error($message, E_USER_ERROR);
         } catch (\Exception $e) {
-            exit(255);
+            \set_error_handler(null);
+            \trigger_error($message, E_USER_ERROR);
         } catch (\Throwable $e) {
-            exit(255);
+            \set_error_handler(null);
+            \trigger_error($message, E_USER_ERROR);
         }
     }
 }
